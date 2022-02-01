@@ -1,0 +1,8 @@
+{
+  "nome_servidor": "Projeto fundamento banco de dados",
+  "porta_servidor": "localhost:8080",
+  "banco_dados": {
+    "driver": "postgres",
+    "url": "host= port= user=postgres password= dbname= sslmode=disable"
+  }
+}

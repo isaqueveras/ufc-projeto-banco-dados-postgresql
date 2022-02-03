@@ -1,44 +1,42 @@
-ackage database
+package database
 
 import (
 	"context"
 	"database/sql"
 
 	"github.com/Masterminds/squirrel"
+	config "github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend/configuracao"
 	_ "github.com/lib/pq"
 )
 
-// DBTransaction used to aggregate transactions
-type DBTransaction struct {
+// DBTransacao usado para agregar as conexões
+type DBTransacao struct {
 	postgres *sql.Tx
 	Builder  squirrel.StatementBuilderType
-	ctx      context.Context
 }
 
-// OpenConnection initialize connection with database
-func OpenConnection(ctx context.Context, readOnly bool) (*DBTransaction, error) {
+// AbrirTransacao inicializa uma conexão com o banco de dados
+func AbrirTransacao() (*DBTransacao, error) {
 	var (
-		t   = &DBTransaction{}
-		db  *sql.DB
-		err error
+		t           = &DBTransacao{}
+		db          *sql.DB
+		transaction *sql.Tx
+		err         error
 	)
 
-	if db, err = sql.Open(config.Get().Database.Driver, config.Get().Database.Url); err != nil {
+	if db, err = sql.Open(config.Obter().Database.Driver, config.Obter().Database.Url); err != nil {
 		return t, err
 	}
 
 	defer db.Close()
 
-	transaction, err := db.BeginTx(ctx, &sql.TxOptions{
+	if transaction, err = db.BeginTx(context.Background(), &sql.TxOptions{
 		Isolation: 0,
-		ReadOnly:  readOnly,
-	})
-
-	if err != nil {
+		ReadOnly:  false,
+	}); err != nil {
 		return nil, err
 	}
 
-	t.ctx = ctx
 	t.postgres = transaction
 	t.Builder = squirrel.StatementBuilder.
 		PlaceholderFormat(squirrel.Dollar).
@@ -48,11 +46,11 @@ func OpenConnection(ctx context.Context, readOnly bool) (*DBTransaction, error) 
 }
 
 // Commit commit pending transactions for all open databases
-func (t *DBTransaction) Commit() (erro error) {
+func (t *DBTransacao) Commit() (erro error) {
 	return t.postgres.Commit()
 }
 
 // Rollback rollback transaction pending for all open databases
-func (t *DBTransaction) Rollback() {
+func (t *DBTransacao) Rollback() {
 	_ = t.postgres.Rollback()
 }

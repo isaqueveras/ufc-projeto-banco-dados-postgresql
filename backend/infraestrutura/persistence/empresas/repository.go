@@ -2,6 +2,7 @@ package empresas
 
 import (
 	"github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend/configuracao/database"
+	dominio "github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend/dominio/empresas"
 	"github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend/infraestrutura/persistence/empresas/postgres"
 )
 
@@ -9,7 +10,11 @@ type repositorio struct {
 	pg *postgres.PGEmpresas
 }
 
-// Repositorio inicializa um repositório
-func Repositorio(banco *database.DBTransacao) *repositorio {
+// Novo inicializa um repositório
+func Novo(banco *database.DBTransacao) dominio.IEmpresas {
 	return &repositorio{pg: &postgres.PGEmpresas{DB: banco}}
+}
+
+func (r *repositorio) CadastrarEmpresa(dados *dominio.DadosEmpresa) error {
+	return r.pg.CadastrarEmpresa(dados)
 }

@@ -3,6 +3,7 @@ module github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend
 go 1.13
 
 require (
+	github.com/Masterminds/squirrel v1.5.2
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.7.7
 	github.com/lib/pq v1.10.4

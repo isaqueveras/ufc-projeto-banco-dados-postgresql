@@ -38,6 +38,7 @@ func main() {
 	categorias.Router(v1.Group("categorias"))
 	categorias.RouterWithID(v1.Group("categoria"))
 
+	avaliacoes.Router(v1.Group("avaliacoes"))
 	avaliacoes.RouterWithID(v1.Group("avaliacao"))
 
 	grupoErro := errgroup.Group{}

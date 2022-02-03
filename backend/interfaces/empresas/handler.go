@@ -12,12 +12,12 @@ func cadastrarEmpresa(c *gin.Context) {
 	)
 
 	if erro = c.ShouldBindJSON(&dados); erro != nil {
-		c.JSON(201, gin.H{"messagem": "Não foi possivel cadastrar a empresa: " + erro.Error()})
+		c.JSON(400, gin.H{"messagem": "Não foi possivel cadastrar a empresa: " + erro.Error()})
 		return
 	}
 
 	if erro = app.CadastrarEmpresa(&dados); erro != nil {
-		c.JSON(201, gin.H{"messagem": "Não foi possivel cadastrar a empresa: " + erro.Error()})
+		c.JSON(400, gin.H{"messagem": "Não foi possivel cadastrar a empresa: " + erro.Error()})
 		return
 	}
 

@@ -3,12 +3,12 @@ package cidades
 import "github.com/gin-gonic/gin"
 
 func Router(r *gin.RouterGroup) {
-	r.GET("", func(c *gin.Context) {})  // Listar todas as cidades
-	r.POST("", func(c *gin.Context) {}) // Cadastrar uma cidade
+	r.GET("", listarCidades)    // Listar todas as cidades
+	r.POST("", cadastrarCidade) // Cadastrar uma cidade
 }
 
 func RouterWithID(r *gin.RouterGroup) {
-	r.GET(":id", func(c *gin.Context) {})    // Listar dados de uma cidade
-	r.PUT(":id", func(c *gin.Context) {})    // Editar uma cidade
-	r.DELETE(":id", func(c *gin.Context) {}) // Excluir uma cidade
+	r.GET(":id", listarCidade)     // Listar dados de uma cidade
+	r.PUT(":id", editarCidade)     // Editar uma cidade
+	r.DELETE(":id", excluirCidade) // Excluir uma cidade
 }

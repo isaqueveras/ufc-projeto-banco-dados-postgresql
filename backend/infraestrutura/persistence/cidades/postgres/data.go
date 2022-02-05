@@ -63,7 +63,7 @@ func (pg *PGCidades) EditarCidade(dados *dominio.DadosCidade) (erro error) {
 		SetMap(valores).
 		Where(squirrel.Eq{"id": dados.ID}).
 		Suffix(`RETURNING "id"`).
-		Scan(new(string)); erro != nil {
+		Scan(new(int64)); erro != nil {
 		return errors.New("não foi possivel editar a cidade")
 	}
 

@@ -20,8 +20,8 @@ func main() {
 	configuracao.Carregar()
 
 	// Inicializando o gin
-	rotas := gin.New()
-	gin.SetMode(gin.ReleaseMode)
+	rotas := gin.Default()
+	// gin.SetMode(gin.)
 
 	// Middlewares para todas as rotas
 	rotas.Use(middleware.CORS())

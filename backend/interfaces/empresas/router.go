@@ -3,12 +3,12 @@ package empresas
 import "github.com/gin-gonic/gin"
 
 func Router(r *gin.RouterGroup) {
-	r.GET("", func(c *gin.Context) {}) // Lista todas as empresas
-	r.POST("", cadastrarEmpresa)       // Cadastrar uma empresa
+	r.GET("", listarEmpresas)    // Lista todas as empresas
+	r.POST("", cadastrarEmpresa) // Cadastrar uma empresa
 }
 
 func RouterWithID(r *gin.RouterGroup) {
-	r.GET(":id", func(c *gin.Context) {})    // Listar dados de uma empresa
-	r.PUT(":id", func(c *gin.Context) {})    // Editar uma empresa
-	r.DELETE(":id", func(c *gin.Context) {}) // Excluir uma empresa
+	r.GET(":id", listarEmpresa)     // Listar dados de uma empresa
+	r.PUT(":id", editarEmpresa)     // Editar uma empresa
+	r.DELETE(":id", excluirEmpresa) // Excluir uma empresa
 }

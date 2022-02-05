@@ -11,5 +11,11 @@ type DadosEmpresa struct {
 	Cnpj        *string
 	CidadeID    *int64
 	CategoriaID *int64
-	DataCriacao **time.Time
+	DataCriacao *time.Time
+}
+
+// ListaEmpresas modela uma lista de empresas
+type ListaEmpresas struct {
+	Total *int64
+	Dados []DadosEmpresa
 }

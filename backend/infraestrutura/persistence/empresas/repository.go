@@ -18,3 +18,19 @@ func Novo(banco *database.DBTransacao) dominio.IEmpresas {
 func (r *repositorio) CadastrarEmpresa(dados *dominio.DadosEmpresa) error {
 	return r.pg.CadastrarEmpresa(dados)
 }
+
+func (r *repositorio) ExcluirEmpresa(id *int64) error {
+	return r.pg.ExcluirEmpresa(id)
+}
+
+func (r *repositorio) EditarEmpresa(dados *dominio.DadosEmpresa) error {
+	return r.pg.EditarEmpresa(dados)
+}
+
+func (r *repositorio) ListarEmpresas() (empresas *dominio.ListaEmpresas, erro error) {
+	return r.pg.ListarEmpresas()
+}
+
+func (r *repositorio) ListarEmpresa(id *int64) (empresa *dominio.DadosEmpresa, erro error) {
+	return r.pg.ListarEmpresa(id)
+}

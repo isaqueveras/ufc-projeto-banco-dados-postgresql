@@ -8,13 +8,10 @@ import {
   Grid,
   GridItem,
   Heading,
-  Flex,
-  Tag, 
 } from "@chakra-ui/react";
 import Card from "../../Components/Card";
 
 import Menu from '../../Components/Menu'
-import Rating from "../../Components/Rating";
 import MelhoresCidades from "./MelhoresCidades";
 import MelhoresEmpresas from "./MelhoresEmpresas";
 

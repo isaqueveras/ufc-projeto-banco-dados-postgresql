@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom"
 
-import TelaPrincipal from "./pages/Inicio";
-import TelaEmpresas from "./pages/Empresas/Inicio";
-import TelaCategorias from "./pages/Categorias/Inicio";
-import TelaCidades from "./pages/Cidades/Inicio";
-import TelaAvaliacoes from "./pages/Avaliacoes/Inicio";
+import TelaPrincipal from "./pages/Inicio/Inicio";
+import TelaEmpresas from "./pages/Dashboard/Empresas/Inicio";
+import TelaCategorias from "./pages/Dashboard/Categorias/Inicio";
+import TelaCidades from "./pages/Dashboard/Cidades/Inicio";
+import TelaAvaliacoes from "./pages/Dashboard/Avaliacoes/Inicio";
 
 function App() {
   return (

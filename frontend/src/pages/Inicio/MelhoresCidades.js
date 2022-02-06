@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Box, chakra, Flex, Heading } from "@chakra-ui/react";
 import Rating from "../../Components/Rating";
 
 export default function MelhoresCidades() {

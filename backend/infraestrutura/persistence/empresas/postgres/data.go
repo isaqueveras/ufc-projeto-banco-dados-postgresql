@@ -74,7 +74,7 @@ func (pg *PGEmpresas) EditarEmpresa(dados *dominio.DadosEmpresa) (erro error) {
 		Where(squirrel.Eq{"id": dados.ID}).
 		Suffix(`RETURNING "id"`).
 		Scan(new(int64)); erro != nil {
-		return errors.New("não foi possivel editar a empresa")
+		return erro
 	}
 
 	return

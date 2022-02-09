@@ -7,7 +7,7 @@ export default function MenuDashboard() {
       <Container maxW='8xl'>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
-            <Box><Heading color={'white'} fontSize={22}>Dashbaord</Heading></Box>
+            <Box><Heading color={'white'} fontSize={22}><Link to="/dashboard">Dashbaord</Link></Heading></Box>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               <LinkItem
                 px={2}

@@ -1,4 +1,4 @@
-import MenuDashboard from "../../../Components/MenuDashboard";
+import MenuDashboard from "../../../components/MenuDashboard";
 
 export default function Inicio() {
   return (

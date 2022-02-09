@@ -9,9 +9,10 @@ import {
   GridItem,
   Heading,
 } from "@chakra-ui/react";
-import Card from "../../Components/Card";
 
-import Menu from '../../Components/Menu'
+import Card from "../../components/Card";
+import Menu from '../../components/Menu'
+
 import MelhoresCidades from "./MelhoresCidades";
 import MelhoresEmpresas from "./MelhoresEmpresas";
 

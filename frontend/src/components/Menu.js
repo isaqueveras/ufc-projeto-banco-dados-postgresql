@@ -15,7 +15,7 @@ export default function Menu() {
                 rounded={'md'}
                 _hover={{ textDecoration: 'none', bg: 'messenger.800', textDecor: 'none'}}
                 color={'gray.200'}>
-                <Link to="avaliacoes">✏️ Dashboard</Link>
+                <Link to="dashboard">✏️ Dashboard</Link>
               </LinkItem>
             </HStack>
           </HStack>

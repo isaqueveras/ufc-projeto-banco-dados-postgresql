@@ -1,5 +1,5 @@
 import { Box, chakra, Flex, Heading } from "@chakra-ui/react";
-import Rating from "../../Components/Rating";
+import Rating from "../../components/Rating";
 
 export default function MelhoresEmpresas() {
   return (

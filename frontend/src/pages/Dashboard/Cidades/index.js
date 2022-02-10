@@ -1,19 +1,5 @@
 import { useEffect, useState } from "react";
-import { 
-  Alert,
-  AlertIcon,
-  Box,
-  Button,
-  CloseButton,
-  Container,
-  Heading,
-  Table, 
-  Tbody, 
-  Td, 
-  Th, 
-  Thead, 
-  Tr,
-} from "@chakra-ui/react";
+import {  Alert, AlertIcon, Box, Button, CloseButton, Container, Heading, Table,  Tbody,  Td,  Th,  Thead,  Tr,} from "@chakra-ui/react";
 
 // Componentes
 import MenuDashboard from "../../../components/MenuDashboard";
@@ -27,8 +13,8 @@ export default function Inicio() {
   const [mensagem, adicionarMensagem] = useState({})
 
   const fetchData = async () => {
-    // Busca uma lista de empresa utilizando a API feito em Golang
-    const res = await api.get('empresas');
+    // Busca uma lista de cidades utilizando a API feito em Golang
+    const res = await api.get('cidades');
     adicionarDados(res.data)
   }
   
@@ -36,11 +22,11 @@ export default function Inicio() {
     fetchData().catch(console.error);
   }, []);
 
-  function excluirEmpresa(id) {
-    api.delete('empresa/'+ id).then(res => {
+  function excluirCidade(id) {
+    api.delete('cidade/'+ id).then(res => {
       adicionarMensagem({
         tipo: 'success', 
-        mensagem: `Empresa com o id (${id}) foi excluido com sucesso.`,
+        mensagem: `Cidade com o id (${id}) foi excluido com sucesso.`,
         estaAtivo: true,
       });
 
@@ -48,7 +34,7 @@ export default function Inicio() {
     }).catch(error => {
       adicionarMensagem({
         tipo: 'error',
-        mensagem: `Erro ao excluir a empresa com o id (${id}).`,
+        mensagem: `Erro ao excluir a cidade com o id (${id}).`,
         estaAtivo: true
       });
     });
@@ -70,20 +56,15 @@ export default function Inicio() {
           flexDirection={'row'}
           justifyContent={'space-between'}
         >
-          <Heading mb={5}>({dados?.total_empresas}) Empresas</Heading>
-          <Link to="../dashboard/empresas/cadastrar"><Button colorScheme='green' size='md' my='1'>Cadastrar empresa</Button></Link>
+          <Heading mb={5}>({dados?.total_cidades}) Cidades</Heading>
+          <Link to="../dashboard/cidades/cadastrar"><Button colorScheme='green' size='md' my='1'>Cadastrar cidade</Button></Link>
         </Box>
         <Table variant='striped' size={'sm'}>
           <Thead>
             <Tr>
               <Th>ID</Th>
               <Th>Nome</Th>
-              <Th>Telefone</Th>
-              <Th>CPF</Th>
-              <Th>CNPJ</Th>
-              <Th>ID Cidade</Th>
-              <Th>ID Categoria</Th>
-              <Th>Data criação</Th>
+              <Th>UF</Th>
               <Th>Ações</Th>
             </Tr>
           </Thead>
@@ -92,15 +73,11 @@ export default function Inicio() {
             <Tr key={i.id}>
               <Td>{i?.id}</Td>
               <Td>{i?.nome}</Td>
-              <Td>{i?.telefone}</Td>
-              <Td>{i?.cpf}</Td>
-              <Td>{i?.cnpj}</Td>
-              <Td>{i?.cidade_id}</Td>
-              <Td>{i?.categoria_id}</Td>
+              <Td>{i?.uf}</Td>
               <Td>{i?.data_criacao}</Td>
               <Td>
-                <Link to={`editar/${i.id}`}><Button colorScheme='yellow' size='xs' my='1'>Editar</Button></Link>{' '}
-                <Button colorScheme='red' size='xs' onClick={() => excluirEmpresa(i.id)} my='1'>Excluir</Button>
+                <Link to={`../dashboard/cidades/editar/${i.id}`}><Button colorScheme='yellow' size='xs' my='1'>Editar</Button></Link>{' '}
+                <Button colorScheme='red' size='xs' onClick={() => excluirCidade(i.id)} my='1'>Excluir</Button>
               </Td>
             </Tr>
             ))}

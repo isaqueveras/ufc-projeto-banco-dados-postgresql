@@ -64,7 +64,7 @@ func (pg *PGCidades) EditarCidade(dados *dominio.DadosCidade) (erro error) {
 		Where(squirrel.Eq{"id": dados.ID}).
 		Suffix(`RETURNING "id"`).
 		Scan(new(int64)); erro != nil {
-		return errors.New("não foi possivel editar a cidade")
+		return erro
 	}
 
 	return

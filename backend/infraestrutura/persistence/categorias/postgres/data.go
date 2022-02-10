@@ -64,7 +64,7 @@ func (pg *PGCategorias) EditarCategoria(dados *dominio.DadosCategoria) (erro err
 		Where(squirrel.Eq{"id": dados.ID}).
 		Suffix(`RETURNING "id"`).
 		Scan(new(int64)); erro != nil {
-		return errors.New("não foi possivel editar a categoria")
+		return erro
 	}
 
 	return

@@ -23,7 +23,7 @@ export default function MenuDashboard() {
                 rounded={'md'}
                 _hover={{ textDecoration: 'none', bg: 'messenger.800', textDecor: 'none'}}
                 color={'gray.200'}>
-                <Link to="cidades">Cidades</Link>
+                <Link to="/dashboard/cidades">Cidades</Link>
               </LinkItem>
               <LinkItem
                 px={2}
@@ -31,7 +31,7 @@ export default function MenuDashboard() {
                 rounded={'md'}
                 _hover={{ textDecoration: 'none', bg: 'messenger.800', textDecor: 'none'}}
                 color={'gray.200'}>
-                <Link to="empresas">Empresas</Link>
+                <Link to="/dashboard/empresas">Empresas</Link>
               </LinkItem>
               <LinkItem
                 px={2}
@@ -39,7 +39,7 @@ export default function MenuDashboard() {
                 rounded={'md'}
                 _hover={{ textDecoration: 'none', bg: 'messenger.800', textDecor: 'none'}}
                 color={'gray.200'}>
-                <Link to="categorias">Categorias</Link>
+                <Link to="/dashboard/categorias">Categorias</Link>
               </LinkItem>
               <LinkItem
                 px={2}
@@ -47,7 +47,7 @@ export default function MenuDashboard() {
                 rounded={'md'}
                 _hover={{ textDecoration: 'none', bg: 'messenger.800', textDecor: 'none'}}
                 color={'gray.200'}>
-                <Link to="avaliacoes">Avaliações</Link>
+                <Link to="/dashboard/avaliacoes">Avaliações</Link>
               </LinkItem>
             </HStack>
           </HStack>

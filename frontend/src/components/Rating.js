@@ -26,7 +26,7 @@ export default function Rating({ rating, numReviews }) {
         })}
 
       <Box as="span" ml="2" color="gray.600" fontSize="sm">
-        {numReviews} {numReviews > 1 ? 'Avaliações' : 'Avaliação'}
+        {numReviews > 0 ? `${numReviews} Avaliações` : ''}
       </Box>
     </Box>
   );

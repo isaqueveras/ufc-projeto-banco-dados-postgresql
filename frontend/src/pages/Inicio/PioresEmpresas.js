@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import Rating from "../../components/Rating";
 import api from "../../services/api";
 
-export default function MelhoresEmpresas() {
+export default function PioresEmpresas() {
   const [dados, adicionarDados] = useState([])
 
   useEffect(()  => {
     const fetch = async () => {
-      const res = await api.get('empresas/melhores');
+      const res = await api.get('empresas/piores');
       adicionarDados(res.data)
     }
 
@@ -17,8 +17,8 @@ export default function MelhoresEmpresas() {
   
   return (
     <Box mt={8}>
-      <Heading as={'h3'} fontSize={'22'}>Melhores empresas</Heading>
-      <chakra.p mb={3} color={'gray.600'}>👛 Conheça as empresas que tem as melhores avaliações</chakra.p>
+      <Heading as={'h3'} fontSize={'22'}>Piores empresas</Heading>
+      <chakra.p mb={3} color={'gray.600'}>👛 Conheça as empresas que tem as piores avaliações</chakra.p>
       {dados?.dados?.map(i => (
         <Flex key={i?.id} maxW="md" mx="auto" my={4}>
           <Box>

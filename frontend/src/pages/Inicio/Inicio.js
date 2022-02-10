@@ -8,15 +8,30 @@ import {
   Grid,
   GridItem,
   Heading,
+  Tag,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
-import Card from "../../components/Card";
 import Menu from '../../components/Menu'
+import api from "../../services/api";
 
 import MelhoresCidades from "./MelhoresCidades";
 import MelhoresEmpresas from "./MelhoresEmpresas";
+import UltimasAvaliacoes from "./UltimasAvaliacoes";
+import PioresEmpresas from "./PioresEmpresas";
 
 function Home() {
+  const [dadosCategorias, adicionarDadosCategorias] = useState([])
+
+  useEffect(()  => {
+    const fetchCategorias = async () => {
+      const res = await api.get('categorias');
+      adicionarDadosCategorias(res.data)
+    }
+
+    fetchCategorias().catch(console.error);
+  }, []);
+
   return (
     <Box>
       <Menu />
@@ -64,18 +79,19 @@ function Home() {
           <GridItem rounded="lg" colSpan={2}>
             <Heading as={'h3'} fontSize={'22'}>Avaliações</Heading>
             <chakra.p mb={6} color={'gray.600'}>🛍️ Leia as ultimas avaliações</chakra.p>
-
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            
+            <UltimasAvaliacoes />
           </GridItem>
-          <GridItem   rounded="lg">
+          <GridItem rounded="lg">
             <Heading as={'h3'} fontSize={'22'}>Categorias</Heading>
             <chakra.p mb={6} color={'gray.600'}>🏬 Navegue pelas categorias</chakra.p>
+
+            {dadosCategorias?.dados?.map((i) => (
+              <Box key={i?.dados?.id}> 
+                <Tag size={'md'} variant='subtle' colorScheme='green' mt='3' mr='2'>{i?.nome}</Tag>
+              </Box>
+            ))}
+
+            <PioresEmpresas />
           </GridItem>
         </Grid>
       </Container>

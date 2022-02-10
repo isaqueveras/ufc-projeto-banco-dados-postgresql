@@ -166,3 +166,38 @@ func ListarAvaliacao(id *int64) (avaliacaoRes *DadosAvaliacao, erro error) {
 
 	return
 }
+
+// UltimasAvaliacoes
+func UltimasAvaliacoesInicio() (res *DadosUltimasAvaliacoesRes, erro error) {
+	res = new(DadosUltimasAvaliacoesRes)
+
+	var (
+		dados     *dominio.DadosUltimasAvaliacoes
+		transacao *database.DBTransacao
+	)
+
+	if transacao, erro = database.AbrirTransacao(); erro != nil {
+		return nil, erro
+	}
+
+	defer transacao.Rollback()
+
+	repo := repositorio.Novo(transacao)
+	if dados, erro = repo.UltimasAvaliacoes(); erro != nil {
+		return nil, erro
+	}
+
+	for i := range dados.Dados {
+		res.Dados = append(res.Dados, UltimasAvaliacoes{
+			ID:          dados.Dados[i].ID,
+			Titulo:      dados.Dados[i].Titulo,
+			Descricao:   dados.Dados[i].Descricao,
+			QtdEstrela:  dados.Dados[i].QtdEstrela,
+			NomePessoa:  dados.Dados[i].NomePessoa,
+			NomeEmpresa: dados.Dados[i].NomeEmpresa,
+			Categoria:   dados.Dados[i].Categoria,
+		})
+	}
+
+	return
+}

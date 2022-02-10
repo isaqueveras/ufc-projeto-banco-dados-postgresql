@@ -147,3 +147,34 @@ func ListarCidade(id *int64) (cidadeRes *DadosCidade, erro error) {
 
 	return
 }
+
+// MelhoresCidade contem a logica de negocio para listar as melhores cidades
+func MelhoresCidade() (empresasRes *DadosCidadesRes, erro error) {
+	empresasRes = new(DadosCidadesRes)
+
+	var (
+		dados     *dominio.DadosCidades
+		transacao *database.DBTransacao
+	)
+
+	if transacao, erro = database.AbrirTransacao(); erro != nil {
+		return nil, erro
+	}
+
+	defer transacao.Rollback()
+
+	repo := repositorio.Novo(transacao)
+	if dados, erro = repo.MelhoresCidades(); erro != nil {
+		return nil, erro
+	}
+
+	for i := range dados.Dados {
+		empresasRes.Dados = append(empresasRes.Dados, DadosAvaliacoesCidade{
+			Nome:          dados.Dados[i].Nome,
+			MediaEstrelas: dados.Dados[i].MediaEstrelas,
+			QtdAvaliacoes: dados.Dados[i].QtdAvaliacoes,
+		})
+	}
+
+	return
+}

@@ -19,3 +19,13 @@ type ListaEmpresas struct {
 	Total *int64
 	Dados []DadosEmpresa
 }
+
+type DadosEmpresas struct {
+	Dados []DadosAvaliacoesEmpresa
+}
+
+type DadosAvaliacoesEmpresa struct {
+	Nome          *string
+	MediaEstrelas *int64
+	QtdAvaliacoes *int64
+}

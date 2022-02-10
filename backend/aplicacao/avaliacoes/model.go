@@ -26,3 +26,17 @@ type empresa struct {
 	ID   *int64  `json:"id,omitempty"`
 	Nome *string `json:"Nome,omitempty"`
 }
+
+type DadosUltimasAvaliacoesRes struct {
+	Dados []UltimasAvaliacoes `json:"dados,omitempty"`
+}
+
+type UltimasAvaliacoes struct {
+	ID          *string `json:"id,omitempty"`
+	Titulo      *string `json:"titulo,omitempty"`
+	Descricao   *string `json:"descricao,omitempty"`
+	QtdEstrela  *int64  `json:"qtd_estrela,omitempty"`
+	NomePessoa  *string `json:"nome_pessoa,omitempty"`
+	NomeEmpresa *string `json:"nome_empresa,omitempty"`
+	Categoria   *string `json:"categoria,omitempty"`
+}

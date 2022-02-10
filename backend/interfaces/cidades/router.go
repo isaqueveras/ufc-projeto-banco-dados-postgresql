@@ -5,6 +5,8 @@ import "github.com/gin-gonic/gin"
 func Router(r *gin.RouterGroup) {
 	r.GET("", listarCidades)    // Listar todas as cidades
 	r.POST("", cadastrarCidade) // Cadastrar uma cidade
+
+	r.GET("/melhores", melhoresCidades) // Lista as melhores cidades
 }
 
 func RouterWithID(r *gin.RouterGroup) {

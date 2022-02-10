@@ -3,6 +3,7 @@ package postgres
 import (
 	"database/sql"
 	"errors"
+	"log"
 
 	"github.com/Masterminds/squirrel"
 	"github.com/isaqueveras/ufc-projeto-banco-dados-postgresql/backend/configuracao/database"
@@ -141,6 +142,61 @@ func (pg *PGEmpresas) ListarEmpresa(id *int64) (empresa *dominio.DadosEmpresa, e
 			return nil, errors.New("não foi encontrado nenhuma empresa com esse id")
 		}
 		return nil, erro
+	}
+
+	return
+}
+
+func (pg *PGEmpresas) MelhoresEmpresas() (empresas *dominio.DadosEmpresas, erro error) {
+	empresas = new(dominio.DadosEmpresas)
+
+	consulta := pg.DB.Builder.
+		Select(`
+			nome, 
+			media_estrelas::INTEGER,
+    	qtd_avaliacoes::INTEGER`).
+		From("melhores_empresas")
+
+	linhas, erro := consulta.Query()
+	if erro != nil {
+		return nil, erro
+	}
+
+	for linhas.Next() {
+		var empresa dominio.DadosAvaliacoesEmpresa
+		if erro = linhas.Scan(&empresa.Nome, &empresa.MediaEstrelas, &empresa.QtdAvaliacoes); erro != nil {
+			return nil, erro
+		}
+
+		log.Println(empresa.Nome)
+		empresas.Dados = append(empresas.Dados, empresa)
+	}
+
+	return
+}
+
+func (pg *PGEmpresas) PioresEmpresas() (empresas *dominio.DadosEmpresas, erro error) {
+	empresas = new(dominio.DadosEmpresas)
+
+	consulta := pg.DB.Builder.
+		Select(`
+			nome, 
+			media_estrelas::INTEGER,
+    	qtd_avaliacoes::INTEGER`).
+		From("piores_empresas")
+
+	linhas, erro := consulta.Query()
+	if erro != nil {
+		return nil, erro
+	}
+
+	for linhas.Next() {
+		var empresa dominio.DadosAvaliacoesEmpresa
+		if erro = linhas.Scan(&empresa.Nome, &empresa.MediaEstrelas, &empresa.QtdAvaliacoes); erro != nil {
+			return nil, erro
+		}
+
+		empresas.Dados = append(empresas.Dados, empresa)
 	}
 
 	return

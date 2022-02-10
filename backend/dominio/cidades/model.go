@@ -15,3 +15,13 @@ type ListaCidades struct {
 	TotalCidades *int64
 	Dados        []DadosCidade
 }
+
+type DadosCidades struct {
+	Dados []DadosAvaliacoesCidade
+}
+
+type DadosAvaliacoesCidade struct {
+	Nome          *string
+	MediaEstrelas *int64
+	QtdAvaliacoes *int64
+}

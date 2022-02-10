@@ -34,3 +34,7 @@ func (r *repositorio) ListarAvaliacoes() (avaliacoes *dominio.ListaAvaliacaos, e
 func (r *repositorio) ListarAvaliacao(id *int64) (avaliacao *dominio.DadosAvaliacao, erro error) {
 	return r.pg.ListarAvaliacao(id)
 }
+
+func (r *repositorio) UltimasAvaliacoes() (avaliacao *dominio.DadosUltimasAvaliacoes, erro error) {
+	return r.pg.UltimasAvaliacoes()
+}

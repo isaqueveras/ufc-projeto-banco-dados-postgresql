@@ -19,3 +19,13 @@ type ListaEmpresasRes struct {
 	Total *int64         `json:"total_empresas,omitempty"`
 	Dados []DadosEmpresa `json:"dados,omitempty"`
 }
+
+type DadosEmpresasRes struct {
+	Dados []DadosAvaliacoesEmpresa `json:"dados,omitempty"`
+}
+
+type DadosAvaliacoesEmpresa struct {
+	Nome          *string `json:"nome,omitempty"`
+	MediaEstrelas *int64  `json:"media_estrelas,omitempty"`
+	QtdAvaliacoes *int64  `json:"qtd_avaliacoes,omitempty"`
+}

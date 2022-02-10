@@ -7,4 +7,7 @@ type IEmpresas interface {
 	EditarEmpresa(dados *DadosEmpresa) error
 	ListarEmpresas() (*ListaEmpresas, error)
 	ListarEmpresa(id *int64) (*DadosEmpresa, error)
+
+	MelhoresEmpresas() (*DadosEmpresas, error)
+	PioresEmpresas() (*DadosEmpresas, error)
 }

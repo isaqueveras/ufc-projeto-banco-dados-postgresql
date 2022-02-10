@@ -7,4 +7,6 @@ type IAvaliacoes interface {
 	EditarAvaliacao(dados *DadosAvaliacao) error
 	ListarAvaliacoes() (*ListaAvaliacaos, error)
 	ListarAvaliacao(id *int64) (*DadosAvaliacao, error)
+
+	UltimasAvaliacoes() (*DadosUltimasAvaliacoes, error)
 }

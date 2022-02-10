@@ -7,4 +7,6 @@ type ICidades interface {
 	EditarCidade(dados *DadosCidade) error
 	ListarCidades() (*ListaCidades, error)
 	ListarCidade(id *int64) (*DadosCidade, error)
+
+	MelhoresCidades() (*DadosCidades, error)
 }

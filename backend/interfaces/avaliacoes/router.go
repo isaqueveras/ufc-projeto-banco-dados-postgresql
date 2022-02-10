@@ -5,6 +5,8 @@ import "github.com/gin-gonic/gin"
 func Router(r *gin.RouterGroup) {
 	r.GET("", listarAvaliacaos)    // Listar todas as avaliações
 	r.POST("", cadastrarAvaliacao) // Cadastrar uma avaliação
+
+	r.GET("/ultimas", ultimasAvaliacoes) // Listar as ultimas avaliações
 }
 
 func RouterWithID(r *gin.RouterGroup) {

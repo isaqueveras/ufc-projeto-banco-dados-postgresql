@@ -34,3 +34,11 @@ func (r *repositorio) ListarEmpresas() (empresas *dominio.ListaEmpresas, erro er
 func (r *repositorio) ListarEmpresa(id *int64) (empresa *dominio.DadosEmpresa, erro error) {
 	return r.pg.ListarEmpresa(id)
 }
+
+func (r *repositorio) MelhoresEmpresas() (*dominio.DadosEmpresas, error) {
+	return r.pg.MelhoresEmpresas()
+}
+
+func (r *repositorio) PioresEmpresas() (*dominio.DadosEmpresas, error) {
+	return r.pg.PioresEmpresas()
+}

@@ -26,3 +26,17 @@ type Empresa struct {
 	ID   *int64
 	Nome *string
 }
+
+type DadosUltimasAvaliacoes struct {
+	Dados []UltimasAvaliacoes
+}
+
+type UltimasAvaliacoes struct {
+	ID          *string
+	Titulo      *string
+	Descricao   *string
+	QtdEstrela  *int64
+	NomePessoa  *string
+	NomeEmpresa *string
+	Categoria   *string
+}

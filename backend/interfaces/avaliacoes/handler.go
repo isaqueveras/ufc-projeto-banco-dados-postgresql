@@ -103,3 +103,17 @@ func listarAvaliacao(c *gin.Context) {
 
 	c.JSON(200, dados)
 }
+
+func ultimasAvaliacoes(c *gin.Context) {
+	var (
+		dados *app.DadosUltimasAvaliacoesRes
+		erro  error
+	)
+
+	if dados, erro = app.UltimasAvaliacoesInicio(); erro != nil {
+		c.JSON(500, gin.H{"messagem": "Não foi possivel listar as ultimas avaliações: " + erro.Error()})
+		return
+	}
+
+	c.JSON(200, dados)
+}

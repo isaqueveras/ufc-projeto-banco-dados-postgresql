@@ -164,3 +164,65 @@ func ListarEmpresa(id *int64) (empresaRes *DadosEmpresa, erro error) {
 
 	return
 }
+
+// MelhoresEmpresas contem a logica de negocio para listar as melhores empresas
+func MelhoresEmpresas() (empresasRes *DadosEmpresasRes, erro error) {
+	empresasRes = new(DadosEmpresasRes)
+
+	var (
+		dados     *dominio.DadosEmpresas
+		transacao *database.DBTransacao
+	)
+
+	if transacao, erro = database.AbrirTransacao(); erro != nil {
+		return nil, erro
+	}
+
+	defer transacao.Rollback()
+
+	repo := empresas.Novo(transacao)
+	if dados, erro = repo.MelhoresEmpresas(); erro != nil {
+		return nil, erro
+	}
+
+	for i := range dados.Dados {
+		empresasRes.Dados = append(empresasRes.Dados, DadosAvaliacoesEmpresa{
+			Nome:          dados.Dados[i].Nome,
+			MediaEstrelas: dados.Dados[i].MediaEstrelas,
+			QtdAvaliacoes: dados.Dados[i].QtdAvaliacoes,
+		})
+	}
+
+	return
+}
+
+// PioresEmpresas contem a logica de negocio para listar as piores empresas
+func PioresEmpresas() (empresasRes *DadosEmpresasRes, erro error) {
+	empresasRes = new(DadosEmpresasRes)
+
+	var (
+		dados     *dominio.DadosEmpresas
+		transacao *database.DBTransacao
+	)
+
+	if transacao, erro = database.AbrirTransacao(); erro != nil {
+		return nil, erro
+	}
+
+	defer transacao.Rollback()
+
+	repo := empresas.Novo(transacao)
+	if dados, erro = repo.PioresEmpresas(); erro != nil {
+		return nil, erro
+	}
+
+	for i := range dados.Dados {
+		empresasRes.Dados = append(empresasRes.Dados, DadosAvaliacoesEmpresa{
+			Nome:          dados.Dados[i].Nome,
+			MediaEstrelas: dados.Dados[i].MediaEstrelas,
+			QtdAvaliacoes: dados.Dados[i].QtdAvaliacoes,
+		})
+	}
+
+	return
+}

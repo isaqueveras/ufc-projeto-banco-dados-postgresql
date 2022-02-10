@@ -159,3 +159,37 @@ func (pg *PGAvaliacoes) ListarAvaliacao(id *int64) (avaliacao *dominio.DadosAval
 
 	return
 }
+
+func (pg *PGAvaliacoes) UltimasAvaliacoes() (dados *dominio.DadosUltimasAvaliacoes, erro error) {
+	dados = new(dominio.DadosUltimasAvaliacoes)
+
+	consulta := pg.DB.Builder.
+		Select(`
+			TA.id,
+			TA.titulo,
+			TA.descricao,
+			TA.qtd_estrela,
+			TA.nome_pessoa,
+			TE.nome AS nome_empresa,
+			TC.nome AS categoria`).
+		From("t_avaliacoes TA").
+		Join("t_empresas TE ON TE.id = TA.empresa_id").
+		Join("t_categorias TC ON TC.id = TE.categoria_id").
+		OrderBy("TA.data_criacao DESC")
+
+	linhas, erro := consulta.Query()
+	if erro != nil {
+		return nil, erro
+	}
+
+	for linhas.Next() {
+		var dado dominio.UltimasAvaliacoes
+		if erro = linhas.Scan(&dado.ID, &dado.Titulo, &dado.Descricao, &dado.QtdEstrela, &dado.NomePessoa, &dado.NomeEmpresa, &dado.Categoria); erro != nil {
+			return nil, erro
+		}
+
+		dados.Dados = append(dados.Dados, dado)
+	}
+
+	return
+}

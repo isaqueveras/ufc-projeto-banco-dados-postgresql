@@ -34,3 +34,7 @@ func (r *repositorio) ListarCidades() (cidades *dominio.ListaCidades, erro error
 func (r *repositorio) ListarCidade(id *int64) (cidade *dominio.DadosCidade, erro error) {
 	return r.pg.ListarCidade(id)
 }
+
+func (r *repositorio) MelhoresCidades() (*dominio.DadosCidades, error) {
+	return r.pg.MelhoresCidades()
+}

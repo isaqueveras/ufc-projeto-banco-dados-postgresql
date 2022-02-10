@@ -115,3 +115,30 @@ func (pg *PGCidades) ListarCidade(id *int64) (cidade *dominio.DadosCidade, erro 
 
 	return
 }
+
+func (pg *PGCidades) MelhoresCidades() (empresas *dominio.DadosCidades, erro error) {
+	empresas = new(dominio.DadosCidades)
+
+	consulta := pg.DB.Builder.
+		Select(`
+			nome, 
+			media_estrelas::INTEGER,
+    	qtd_avaliacoes::INTEGER`).
+		From("melhores_cidades")
+
+	linhas, erro := consulta.Query()
+	if erro != nil {
+		return nil, erro
+	}
+
+	for linhas.Next() {
+		var empresa dominio.DadosAvaliacoesCidade
+		if erro = linhas.Scan(&empresa.Nome, &empresa.MediaEstrelas, &empresa.QtdAvaliacoes); erro != nil {
+			return nil, erro
+		}
+
+		empresas.Dados = append(empresas.Dados, empresa)
+	}
+
+	return
+}

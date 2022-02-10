@@ -103,3 +103,31 @@ func listarEmpresa(c *gin.Context) {
 
 	c.JSON(200, dados)
 }
+
+func melhoresEmpresas(c *gin.Context) {
+	var (
+		dados *app.DadosEmpresasRes
+		erro  error
+	)
+
+	if dados, erro = app.MelhoresEmpresas(); erro != nil {
+		c.JSON(500, gin.H{"messagem": "Não foi possivel listar as melhores empresa: " + erro.Error()})
+		return
+	}
+
+	c.JSON(200, dados)
+}
+
+func pioresEmpresas(c *gin.Context) {
+	var (
+		dados *app.DadosEmpresasRes
+		erro  error
+	)
+
+	if dados, erro = app.PioresEmpresas(); erro != nil {
+		c.JSON(500, gin.H{"messagem": "Não foi possivel listar as melhores empresa: " + erro.Error()})
+		return
+	}
+
+	c.JSON(200, dados)
+}
